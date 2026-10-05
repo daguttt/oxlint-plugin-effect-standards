@@ -1,0 +1,61 @@
+{
+  "name": "oxlint-plugin-effect-standards",
+  "version": "0.1.0",
+  "description": "Oxlint rules that enforce coding standards for Effect, Confect and TanStack Router projects.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/daguttt/oxlint-plugin-effect-standards.git"
+  },
+  "engines": {
+    "node": ">=24.15.0"
+  },
+  "packageManager": "pnpm@12.5.1",
+  "type": "module",
+  "exports": {
+    ".": "./dist/index.js",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "configs"
+  ],
+  "oxlint-plugin-effect-standards": {
+    "tailwindStylesheet": "./test/fixtures/tailwind/index.css"
+  },
+  "scripts": {
+    "build": "rm -rf dist && tsc -p tsconfig.build.json",
+    "build:check": "pnpm run build && git diff --exit-code -- dist",
+    "test": "node --test --watch \"test/*.test.ts\"",
+    "test:run": "node --test \"test/*.test.ts\"",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "lint": "effect-tsgo patch --typescript --oxlint && oxlint --type-aware --type-check src test",
+    "lint:fix": "effect-tsgo patch --typescript --oxlint && oxlint --type-aware --type-check --fix src test",
+    "format:check": "prettier --check \"**/*.{ts,json,md,yml}\"",
+    "format:write": "prettier --write \"**/*.{ts,json,md,yml}\"",
+    "feedback": "pnpm format:check; pnpm lint; pnpm typecheck; pnpm test:run; pnpm build:check"
+  },
+  "dependencies": {
+    "@oxlint/plugins": "1.82.0",
+    "effect": "4.0.0-rc.117"
+  },
+  "peerDependencies": {
+    "tailwindcss": ">=4.1.0"
+  },
+  "peerDependenciesMeta": {
+    "tailwindcss": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@effect/tsgo": "0.45.0",
+    "@trivago/prettier-plugin-sort-imports": "6.0.2",
+    "@types/node": "24.13.6",
+    "@typescript/native": "npm:typescript@7.0.2",
+    "oxlint": "1.82.0",
+    "oxlint-tsgolint": "7.0.2001",
+    "prettier": "3.9.8",
+    "tailwindcss": "4.3.3",
+    "typescript": "6.0.3"
+  }
+}

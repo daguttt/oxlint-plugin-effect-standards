@@ -1,0 +1,8 @@
+@import 'tailwindcss';
+
+@theme inline {
+  --color-background: #ffffff;
+  --color-muted: #f4f4f5;
+  --color-label-red: #c0392b;
+  --color-label-blue: #2a6fdb;
+}

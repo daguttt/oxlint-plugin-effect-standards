@@ -1,0 +1,11 @@
+{
+  "jsPlugins": ["../dist/index.js"],
+  "rules": {
+    "effect-standards/backend-layer-direction": "error",
+    "effect-standards/backend-layer-namespace-import": "error",
+    "effect-standards/backend-load-context-imports": "error",
+    "effect-standards/table-adapter": "error",
+    "effect-standards/table-schema-location": "error",
+    "effect-standards/no-dynamic-import": "error"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "jsPlugins": ["../dist/index.js"],
+  "rules": {
+    "effect-standards/frontend-module-namespace-import": "error",
+    "effect-standards/frontend-route-namespace-import": "error",
+    "effect-standards/route-feat-barrel": "error",
+    "effect-standards/route-feat-public-api": "error",
+    "effect-standards/tailwind-class-strings": "error"
+  }
+}

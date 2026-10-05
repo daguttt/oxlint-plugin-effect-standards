@@ -1,0 +1,30 @@
+{
+  "$schema": "./node_modules/@effect/tsgo/oxlint-schema.json",
+  "extends": ["./node_modules/@effect/tsgo/oxlint-presets/recommended.json"],
+  "plugins": ["typescript", "import"],
+  "jsPlugins": ["./src/index.ts"],
+  "categories": { "correctness": "error" },
+  "rules": {
+    "eslint/no-unused-vars": [
+      "warn",
+      { "args": "all", "varsIgnorePattern": "^_", "argsIgnorePattern": "^_" }
+    ],
+    "import/no-cycle": ["error", { "ignoreTypes": true }],
+    "typescript/no-import-type-side-effects": "error",
+    "typescript/no-unsafe-argument": "error",
+    "typescript/no-unsafe-assignment": "error",
+    "typescript/no-unsafe-call": "error",
+    "typescript/no-unsafe-member-access": "error",
+    "typescript/no-unsafe-return": "error",
+    "effecttsgo/async-function": "off",
+    "effecttsgo/node-builtin-import": "off",
+    "effect-standards/prefer-predicate-nullability": "error",
+    "effect-standards/no-try-catch": "error",
+    "effect-standards/no-else": "error",
+    "effect-standards/no-inline-compound-condition": "error",
+    "effect-standards/effect-all-concurrency": "error",
+    "effect-standards/schema-type-name": "error",
+    "effect-standards/dto-verb-prefix": "error"
+  },
+  "ignorePatterns": ["dist/**", "test/fixtures/**"]
+}
