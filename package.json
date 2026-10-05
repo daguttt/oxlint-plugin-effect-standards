@@ -1,6 +1,6 @@
 {
   "name": "oxlint-plugin-effect-standards",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Oxlint rules that enforce coding standards for Effect, Confect and TanStack Router projects.",
   "license": "MIT",
   "repository": {

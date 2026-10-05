@@ -23,6 +23,16 @@ const DEFAULT_VERBS = [
   'Reactivate',
   'Rename',
   'Request',
+  'Complete',
+  'Correct',
+  'Import',
+  'Override',
+  'Record',
+  'Reopen',
+  'Run',
+  'Start',
+  'Stop',
+  'Trigger',
 ];
 
 /**
@@ -41,14 +51,15 @@ export default defineRule({
     ],
     messages: {
       noVerb:
-        "'{{name}}' ends in Dto but does not start with a known write verb. Dto names a write (verb first, e.g. UpdateCustomerDto); name read and response shapes with a projection noun (CustomerDetail, PetSummary). If '{{name}}' does name a write, list the verbs you accept in this rule's `verbs` option, or propose the verb for the plugin's defaults.",
+        "'{{name}}' ends in Dto but does not start with a known write verb. Dto names a write (verb first, e.g. UpdateCustomerDto); name read and response shapes with a projection noun (CustomerDetail, PetSummary). If '{{name}}' does name a write, add its verb to this rule's `verbs` option, or propose it for the plugin's defaults.",
     },
   },
   create(context) {
     const [first] = context.options;
     const configured = Predicate.isObject(first) ? first.verbs : undefined;
+    // Configured verbs extend the defaults, so a project lists only its own.
     const verbs = Array.isArray(configured)
-      ? configured.filter(Predicate.isString)
+      ? [...DEFAULT_VERBS, ...configured.filter(Predicate.isString)]
       : DEFAULT_VERBS;
     const startsWithVerb = new RegExp(`^(${verbs.join('|')})[A-Z]`);
     const check = (id: ESTree.BindingPattern | null) => {

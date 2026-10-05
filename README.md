@@ -7,7 +7,7 @@ Oxlint rules that enforce coding standards for Effect, Confect and TanStack Rout
 The package is installed from this repository, pinned to a tag:
 
 ```bash
-pnpm add -D github:daguttt/oxlint-plugin-effect-standards#v0.1.0
+pnpm add -D github:daguttt/oxlint-plugin-effect-standards#v0.1.1
 ```
 
 It is tested with oxlint 1.82.0. The compiled `dist/` is committed, so installing runs no build script.
@@ -75,15 +75,15 @@ The plugin reads the nearest `package.json` with this key, looking up from the d
 
 ### General (`configs/general.json`)
 
-| Rule                           | Enforces                                                                                          |
-| ------------------------------ | ------------------------------------------------------------------------------------------------- |
-| `prefer-predicate-nullability` | `Predicate.isNull`, `isUndefined`, `isNullish` and their negations over raw comparisons. Autofix. |
-| `no-try-catch`                 | `Result.try` or Effect error handling over synchronous `try`/`catch`.                             |
-| `no-else`                      | Early returns over `else` after a branch that always exits.                                       |
-| `no-inline-compound-condition` | A named constant for a condition with two or more operands.                                       |
-| `effect-all-concurrency`       | An explicit `concurrency` option on `Effect.all`.                                                 |
-| `schema-type-name`             | A schema and its decoded type share one name.                                                     |
-| `dto-verb-prefix`              | A `*Dto` name starts with a write verb. Option: `verbs`.                                          |
+| Rule                           | Enforces                                                                                              |
+| ------------------------------ | ----------------------------------------------------------------------------------------------------- |
+| `prefer-predicate-nullability` | `Predicate.isNull`, `isUndefined`, `isNullish` and their negations over raw comparisons. Autofix.     |
+| `no-try-catch`                 | `Result.try` or Effect error handling over synchronous `try`/`catch`.                                 |
+| `no-else`                      | Early returns over `else` after a branch that always exits.                                           |
+| `no-inline-compound-condition` | A named constant for a condition with two or more operands.                                           |
+| `effect-all-concurrency`       | An explicit `concurrency` option on `Effect.all`.                                                     |
+| `schema-type-name`             | A schema and its decoded type share one name.                                                         |
+| `dto-verb-prefix`              | A `*Dto` name starts with a write verb. Option: `verbs`, extra verbs accepted on top of the defaults. |
 
 ### Backend (`configs/backend.json`)
 

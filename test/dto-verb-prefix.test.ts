@@ -9,7 +9,12 @@ tester.run('dto-verb-prefix', rule, {
     // Lower-case identifiers are values of a Dto, not Dto declarations.
     'const createPetDto = {}; const vCreateCustomerWorkflowDto = 1;',
     'type CustomerDetail = string;',
-    { code: 'type BanPetDto = string;', options: [{ verbs: ['Ban'] }] },
+    'type StartExampleWorkflowDto = string; type RecordExpenseDto = string;',
+    {
+      name: 'a configured verb is accepted alongside the defaults',
+      code: 'type ArchivePetDto = string; type UpdatePetDto = string;',
+      options: [{ verbs: ['Archive'] }],
+    },
   ],
   invalid: [
     { code: 'type CustomerDto = string;', errors: [{ messageId: 'noVerb' }] },
