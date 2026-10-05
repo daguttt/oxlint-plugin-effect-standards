@@ -102,13 +102,16 @@ These key off the Confect layout `src/confect/modules/<module>/{domain,applicati
 
 These key off the aliases `#modules/*` and `#routes/*`, TanStack Router file routes under `src/routes`, and route-local `-feat/` directories.
 
-| Rule                               | Enforces                                                                        |
-| ---------------------------------- | ------------------------------------------------------------------------------- |
-| `frontend-module-namespace-import` | `#modules/<name>` is imported as a namespace named after the module.            |
-| `frontend-route-namespace-import`  | Routes and route features are imported as `*Route` and `*RouteFeat` namespaces. |
-| `route-feat-barrel`                | Every `-feat/` directory has an `index.ts` barrel that exports first.           |
-| `route-feat-public-api`            | Other files import a `-feat/` directory through its barrel.                     |
-| `tailwind-class-strings`           | Tailwind class strings outside `className` are wrapped in `tw` or `cn`.         |
+| Rule                               | Enforces                                                                                                                                                      |
+| ---------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `frontend-module-namespace-import` | `#modules/<name>` is imported as a namespace named after the module.                                                                                          |
+| `frontend-route-namespace-import`  | Routes and route features are imported as `*Route` and `*RouteFeat` namespaces.                                                                               |
+| `route-feat-barrel`                | Every `-feat/` directory has an `index.ts` barrel that exports first.                                                                                         |
+| `route-feat-public-api`            | Other files import a `-feat/` directory through its barrel.                                                                                                   |
+| `route-feat-shared-code`           | Only a route and the routes nested under it use its `-feat/`; an export two unrelated routes share does not sit in an ancestor's `-feat/` that never uses it. |
+| `tailwind-class-strings`           | Tailwind class strings outside `className` are wrapped in `tw` or `cn`.                                                                                       |
+
+`route-feat-shared-code` reads the other route files from disk to see who else uses an export, so an editor shows a stale result until the other file is saved. It follows TanStack Router's default file naming (`index`, `route`, `lazy`, flat `a.b.tsx` files, dotted folders, `__root`); custom route tokens and prefixes are not modelled.
 
 ## Develop
 

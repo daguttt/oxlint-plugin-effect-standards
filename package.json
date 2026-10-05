@@ -1,6 +1,6 @@
 {
   "name": "oxlint-plugin-effect-standards",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Oxlint rules that enforce coding standards for Effect, Confect and TanStack Router projects.",
   "license": "MIT",
   "repository": {
@@ -37,7 +37,8 @@
   },
   "dependencies": {
     "@oxlint/plugins": "1.82.0",
-    "effect": "4.0.0-rc.117"
+    "effect": "4.0.0-rc.117",
+    "typescript": "6.0.3"
   },
   "peerDependencies": {
     "tailwindcss": ">=4.1.0"
@@ -55,7 +56,6 @@
     "oxlint": "1.82.0",
     "oxlint-tsgolint": "7.0.2001",
     "prettier": "3.9.8",
-    "tailwindcss": "4.3.3",
-    "typescript": "6.0.3"
+    "tailwindcss": "4.3.3"
   }
 }
