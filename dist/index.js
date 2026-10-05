@@ -13,6 +13,7 @@ import noTryCatch from './rules/no-try-catch.js';
 import preferPredicateNullability from './rules/prefer-predicate-nullability.js';
 import routeFeatBarrel from './rules/route-feat-barrel.js';
 import routeFeatPublicApi from './rules/route-feat-public-api.js';
+import routeFeatSharedCode from './rules/route-feat-shared-code.js';
 import schemaTypeName from './rules/schema-type-name.js';
 import tableAdapter from './rules/table-adapter.js';
 import tableSchemaLocation from './rules/table-schema-location.js';
@@ -34,6 +35,7 @@ export default definePlugin({
         'prefer-predicate-nullability': preferPredicateNullability,
         'route-feat-barrel': routeFeatBarrel,
         'route-feat-public-api': routeFeatPublicApi,
+        'route-feat-shared-code': routeFeatSharedCode,
         'schema-type-name': schemaTypeName,
         'table-adapter': tableAdapter,
         'table-schema-location': tableSchemaLocation,

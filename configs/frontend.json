@@ -5,6 +5,7 @@
     "effect-standards/frontend-route-namespace-import": "error",
     "effect-standards/route-feat-barrel": "error",
     "effect-standards/route-feat-public-api": "error",
+    "effect-standards/route-feat-shared-code": "error",
     "effect-standards/tailwind-class-strings": "error"
   }
 }
