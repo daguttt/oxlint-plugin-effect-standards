@@ -11,6 +11,7 @@ import noDynamicImport from './rules/no-dynamic-import.ts';
 import noElse from './rules/no-else.ts';
 import noInlineCompoundCondition from './rules/no-inline-compound-condition.ts';
 import noTryCatch from './rules/no-try-catch.ts';
+import preferMatch from './rules/prefer-match.ts';
 import preferPredicateNullability from './rules/prefer-predicate-nullability.ts';
 import routeFeatBarrel from './rules/route-feat-barrel.ts';
 import routeFeatPublicApi from './rules/route-feat-public-api.ts';
@@ -34,6 +35,7 @@ export default definePlugin({
     'no-else': noElse,
     'no-inline-compound-condition': noInlineCompoundCondition,
     'no-try-catch': noTryCatch,
+    'prefer-match': preferMatch,
     'prefer-predicate-nullability': preferPredicateNullability,
     'route-feat-barrel': routeFeatBarrel,
     'route-feat-public-api': routeFeatPublicApi,

@@ -7,7 +7,7 @@ Oxlint rules that enforce coding standards for Effect, Confect and TanStack Rout
 The package is installed from this repository, pinned to a tag:
 
 ```bash
-pnpm add -D github:daguttt/oxlint-plugin-effect-standards#v0.1.1
+pnpm add -D github:daguttt/oxlint-plugin-effect-standards#v0.3.0
 ```
 
 It is tested with oxlint 1.82.0. The compiled `dist/` is committed, so installing runs no build script.
@@ -84,6 +84,7 @@ The plugin reads the nearest `package.json` with this key, looking up from the d
 | `effect-all-concurrency`       | An explicit `concurrency` option on `Effect.all`.                                                     |
 | `schema-type-name`             | A schema and its decoded type share one name.                                                         |
 | `dto-verb-prefix`              | A `*Dto` name starts with a write verb. Option: `verbs`, extra verbs accepted on top of the defaults. |
+| `prefer-match`                 | Effect's `Match` module over `switch` statements.                                                     |
 
 ### Backend (`configs/backend.json`)
 
@@ -126,4 +127,4 @@ Rules live in `src/rules`, one per file, with a matching test in `test`. The rep
 
 1. Run `pnpm build` and commit `dist/` together with the source change. CI fails when they differ.
 2. Bump `version` in `package.json`.
-3. Tag the commit (`git tag v0.2.0`) and push the tag.
+3. Tag the commit (`git tag v0.3.0`) and push the tag.

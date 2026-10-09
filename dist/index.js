@@ -10,6 +10,7 @@ import noDynamicImport from './rules/no-dynamic-import.js';
 import noElse from './rules/no-else.js';
 import noInlineCompoundCondition from './rules/no-inline-compound-condition.js';
 import noTryCatch from './rules/no-try-catch.js';
+import preferMatch from './rules/prefer-match.js';
 import preferPredicateNullability from './rules/prefer-predicate-nullability.js';
 import routeFeatBarrel from './rules/route-feat-barrel.js';
 import routeFeatPublicApi from './rules/route-feat-public-api.js';
@@ -32,6 +33,7 @@ export default definePlugin({
         'no-else': noElse,
         'no-inline-compound-condition': noInlineCompoundCondition,
         'no-try-catch': noTryCatch,
+        'prefer-match': preferMatch,
         'prefer-predicate-nullability': preferPredicateNullability,
         'route-feat-barrel': routeFeatBarrel,
         'route-feat-public-api': routeFeatPublicApi,

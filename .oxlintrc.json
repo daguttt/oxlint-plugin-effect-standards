@@ -24,7 +24,8 @@
     "effect-standards/no-inline-compound-condition": "error",
     "effect-standards/effect-all-concurrency": "error",
     "effect-standards/schema-type-name": "error",
-    "effect-standards/dto-verb-prefix": "error"
+    "effect-standards/dto-verb-prefix": "error",
+    "effect-standards/prefer-match": "error"
   },
   "ignorePatterns": ["dist/**", "test/fixtures/**"]
 }
