@@ -33,22 +33,29 @@ tester.run('prefer-match', rule, {
       errors: [{ messageId: 'tagSwitch' }],
     },
     {
-      name: 'a default case is a fallback Match.valueTags cannot express',
+      name: 'a default case still reads string tags',
       code: 'function f(error: E) { switch (error._tag) { case "NotFound": return 1; default: return 0; } }',
-      errors: [{ messageId: 'partialTagSwitch' }],
+      errors: [{ messageId: 'tagSwitch' }],
     },
     {
-      name: 'an optional _tag may be absent, so it keeps a fallback',
+      name: 'an optional _tag may be absent, so it is matched as a plain value',
       code: 'function f(result: R) { switch (result.failure?._tag) { case "NotFound": return 1; case "Denied": return 0; } }',
-      errors: [{ messageId: 'partialTagSwitch' }],
+      errors: [{ messageId: 'valueSwitch' }],
     },
     {
       name: 'a non-null assertion inside or outside the chain reads the same',
       code: 'function f(a: A, b: A) { switch (a?._tag!) { case "X": return 1; } switch ((b?._tag)!) { case "X": return 1; } }',
-      errors: [
-        { messageId: 'partialTagSwitch' },
-        { messageId: 'partialTagSwitch' },
-      ],
+      errors: [{ messageId: 'valueSwitch' }, { messageId: 'valueSwitch' }],
+    },
+    {
+      name: 'a _tag that is not a string is matched as a plain value',
+      code: 'function f(e: E) { switch (e._tag) { case 0: return "zero"; default: return "other"; } }',
+      errors: [{ messageId: 'valueSwitch' }],
+    },
+    {
+      name: 'a case that is not a literal cannot be read as a tag',
+      code: 'function f(e: E) { switch (e._tag) { case NOT_FOUND: return 1; case "Denied": return 0; } }',
+      errors: [{ messageId: 'valueSwitch' }],
     },
     {
       name: 'a switch on a plain value',

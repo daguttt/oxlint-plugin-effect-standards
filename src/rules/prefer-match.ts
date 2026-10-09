@@ -37,9 +37,7 @@ export default defineRule({
     },
     messages: {
       tagSwitch:
-        '`switch` on `_tag`: map each tag to a handler with `Match.valueTags` from `effect/Match` instead.',
-      partialTagSwitch:
-        '`switch` on `_tag` with a fallback: use `Match.value` with `Match.tag` and `Match.orElse` from `effect/Match` instead.',
+        '`switch` on `_tag`: use `Match.valueTags` from `effect/Match` when every tag has a handler, or `Match.value` with `Match.tag` and `Match.orElse` to keep a fallback.',
       valueSwitch:
         '`switch` statement: use `Match.value` with `Match.when` and `Match.exhaustive` (or `Match.orElse`) from `effect/Match` instead.',
     },
@@ -49,18 +47,19 @@ export default defineRule({
     return {
       SwitchStatement(node) {
         const discriminant = strip(node.discriminant);
-        // `Match.valueTags` needs a handler per tag and a value that is there, so a `default` or `?.` keeps the fallback.
-        const hasFallback =
-          discriminant.optional ||
-          node.cases.some((switchCase) => Predicate.isNull(switchCase.test));
-        const messageId = !readsTag(discriminant.node)
-          ? 'valueSwitch'
-          : hasFallback
-            ? 'partialTagSwitch'
-            : 'tagSwitch';
+        // `Match.valueTags` and `Match.tag` take string tags on a value that is there.
+        const hasStringCases = node.cases.every(
+          ({ test }) =>
+            Predicate.isNull(test) ||
+            (test.type === 'Literal' && Predicate.isString(test.value))
+        );
+        const isTagSwitch =
+          readsTag(discriminant.node) &&
+          !discriminant.optional &&
+          hasStringCases;
         context.report({
           node: context.sourceCode.getFirstToken(node) ?? node,
-          messageId,
+          messageId: isTagSwitch ? 'tagSwitch' : 'valueSwitch',
         });
       },
     };
