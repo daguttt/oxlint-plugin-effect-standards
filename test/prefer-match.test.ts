@@ -23,19 +23,32 @@ tester.run('prefer-match', rule, {
       errors: [{ messageId: 'tagSwitch' }],
     },
     {
-      name: 'a switch on an optional or nested _tag',
-      code: 'function f(result: R) { switch (result.failure?._tag) { case "NotFound": return 1; default: return 0; } }',
-      errors: [{ messageId: 'tagSwitch' }],
-    },
-    {
       name: 'a switch on a quoted _tag key',
-      code: 'function f(error: E) { switch (error["_tag"]) { case "NotFound": return 1; default: return 0; } }',
+      code: 'function f(error: E) { switch (error["_tag"]) { case "NotFound": return 1; case "Denied": return 0; } }',
       errors: [{ messageId: 'tagSwitch' }],
     },
     {
-      name: 'wrappers around the discriminant do not hide _tag',
-      code: 'function f(error: E) { switch ((error!._tag as string)) { default: return 0; } }',
+      name: 'wrappers around the discriminant and its quoted key do not hide _tag',
+      code: 'function f(error: E) { switch ((error!["_tag" as const] as string)) { case "NotFound": return 1; } }',
       errors: [{ messageId: 'tagSwitch' }],
+    },
+    {
+      name: 'a default case is a fallback Match.valueTags cannot express',
+      code: 'function f(error: E) { switch (error._tag) { case "NotFound": return 1; default: return 0; } }',
+      errors: [{ messageId: 'partialTagSwitch' }],
+    },
+    {
+      name: 'an optional _tag may be absent, so it keeps a fallback',
+      code: 'function f(result: R) { switch (result.failure?._tag) { case "NotFound": return 1; case "Denied": return 0; } }',
+      errors: [{ messageId: 'partialTagSwitch' }],
+    },
+    {
+      name: 'a non-null assertion inside or outside the chain reads the same',
+      code: 'function f(a: A, b: A) { switch (a?._tag!) { case "X": return 1; } switch ((b?._tag)!) { case "X": return 1; } }',
+      errors: [
+        { messageId: 'partialTagSwitch' },
+        { messageId: 'partialTagSwitch' },
+      ],
     },
     {
       name: 'a switch on a plain value',
@@ -54,7 +67,7 @@ tester.run('prefer-match', rule, {
     },
     {
       name: 'nested switches are each reported',
-      code: 'function f(a: A, n: number) { switch (a._tag) { case "X": switch (n) { default: return 1; } default: return 0; } }',
+      code: 'function f(a: A, n: number) { switch (a._tag) { case "X": switch (n) { default: return 1; } case "Y": return 0; } }',
       errors: [{ messageId: 'tagSwitch' }, { messageId: 'valueSwitch' }],
     },
   ],
