@@ -1,9 +1,5 @@
 import { defineRule } from '@oxlint/plugins';
-/**
- * Flags a ternary whose consequent or alternate is another ternary, as
- * ESLint's `no-nested-ternary` does. Its message points at an IIFE with early
- * returns, since the built-in rule suggests the `else` that `no-else` rejects.
- */
+/** ESLint's `no-nested-ternary`, with a message that names the IIFE instead of the `else` that `no-else` rejects. */
 export default defineRule({
     meta: {
         type: 'suggestion',
