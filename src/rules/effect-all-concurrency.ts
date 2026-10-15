@@ -61,12 +61,12 @@ export default defineRule({
         if (Predicate.isUndefined(first)) return;
         const collection = resolveValue(context.sourceCode, first);
         if (Predicate.isNull(collection)) return;
-        const entries =
-          collection.type === 'ArrayExpression'
-            ? collection.elements
-            : collection.type === 'ObjectExpression'
-              ? collection.properties
-              : null;
+        const entries = (() => {
+          if (collection.type === 'ArrayExpression') return collection.elements;
+          if (collection.type === 'ObjectExpression')
+            return collection.properties;
+          return null;
+        })();
         if (Predicate.isNull(entries)) return;
         // A spread hides the real size, so only a lone non-spread element is provably fine.
         const isProvablySingle =
