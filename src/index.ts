@@ -7,6 +7,7 @@ import dtoVerbPrefix from './rules/dto-verb-prefix.ts';
 import effectAllConcurrency from './rules/effect-all-concurrency.ts';
 import frontendModuleNamespaceImport from './rules/frontend-module-namespace-import.ts';
 import frontendRouteNamespaceImport from './rules/frontend-route-namespace-import.ts';
+import noChainedTernary from './rules/no-chained-ternary.ts';
 import noDynamicImport from './rules/no-dynamic-import.ts';
 import noElse from './rules/no-else.ts';
 import noInlineCompoundCondition from './rules/no-inline-compound-condition.ts';
@@ -31,6 +32,7 @@ export default definePlugin({
     'effect-all-concurrency': effectAllConcurrency,
     'frontend-module-namespace-import': frontendModuleNamespaceImport,
     'frontend-route-namespace-import': frontendRouteNamespaceImport,
+    'no-chained-ternary': noChainedTernary,
     'no-dynamic-import': noDynamicImport,
     'no-else': noElse,
     'no-inline-compound-condition': noInlineCompoundCondition,

@@ -25,7 +25,8 @@
     "effect-standards/effect-all-concurrency": "error",
     "effect-standards/schema-type-name": "error",
     "effect-standards/dto-verb-prefix": "error",
-    "effect-standards/prefer-match": "error"
+    "effect-standards/prefer-match": "error",
+    "effect-standards/no-chained-ternary": "error"
   },
   "ignorePatterns": ["dist/**", "test/fixtures/**"]
 }

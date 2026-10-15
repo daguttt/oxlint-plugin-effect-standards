@@ -28,12 +28,11 @@ const isStyleTarget = (target: ESTree.Node): boolean => {
   if (target.type !== 'MemberExpression') return false;
   const { property } = target;
   const isPlainName = !target.computed && property.type === 'Identifier';
-  const name =
-    property.type === 'Literal'
-      ? String(property.value)
-      : isPlainName
-        ? property.name
-        : '';
+  const name = (() => {
+    if (property.type === 'Literal') return String(property.value);
+    if (isPlainName) return property.name;
+    return '';
+  })();
   return STYLE_NAME.test(name) || isStyleTarget(target.object);
 };
 
@@ -181,12 +180,11 @@ export default defineRule({
             (current.name.name === 'style' && !hasLeftFunction))
         );
       // A `style`-named constant or parameter default holds CSS.
-      const boundName =
-        current.type === 'VariableDeclarator'
-          ? current.id
-          : current.type === 'AssignmentPattern'
-            ? current.left
-            : null;
+      const boundName = (() => {
+        if (current.type === 'VariableDeclarator') return current.id;
+        if (current.type === 'AssignmentPattern') return current.left;
+        return null;
+      })();
       const isStyleBinding =
         boundName?.type === 'Identifier' && STYLE_NAME.test(boundName.name);
       const isMember =

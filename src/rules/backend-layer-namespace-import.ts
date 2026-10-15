@@ -64,14 +64,19 @@ export default defineRule({
           return;
         }
 
-        const { expected, what } = Predicate.isNull(layer)
-          ? { expected: capitalize(target.module), what: 'module barrel' }
-          : isSameModule
-            ? { expected: capitalize(layer), what: 'intra-module layer' }
-            : {
-                expected: `${capitalize(target.module)}${capitalize(layer)}`,
-                what: 'cross-module layer',
-              };
+        const { expected, what } = (() => {
+          if (Predicate.isNull(layer))
+            return {
+              expected: capitalize(target.module),
+              what: 'module barrel',
+            };
+          if (isSameModule)
+            return { expected: capitalize(layer), what: 'intra-module layer' };
+          return {
+            expected: `${capitalize(target.module)}${capitalize(layer)}`,
+            what: 'cross-module layer',
+          };
+        })();
 
         if (!isNamespace) {
           context.report({
